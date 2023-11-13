@@ -1,19 +1,14 @@
-const inputBox = document.querySelector("#validation-input");
-const validate = document.querySelector('input[data-length="6"]');
+const sizeController = document.querySelector("#font-size-control");
+const output = document.querySelector("#text");
 
-inputBox.addEventListener("blur", () => {
-  switch (inputBox.value.length) {
-    case parseFloat(validate.dataset.length):
-      inputBox.classList.add("valid");
-      inputBox.classList.remove("invalid");
-      break;
-    case 0:
-      inputBox.classList.remove("valid");
-      inputBox.classList.remove("invalid");
-      break;
-    default:
-      inputBox.classList.remove("valid");
-      inputBox.classList.add("invalid");
-      break;
-  }
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
+
+sizeController.addEventListener("input", () => {
+  output.style.fontSize = `${sizeController.value}px`;
+  output.style.color = getRandomHexColor();
+  output.style.transition = "font-size 250ms ease,color 250ms ease";
 });
